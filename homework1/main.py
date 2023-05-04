@@ -31,12 +31,10 @@ class MyServer(BaseHTTPRequestHandler):
         self.wfile.write(bytes('[]', "utf-8"))
 
     def do_GET(self):
-        print('Hello, World wide web')
-        json_data = self.load_json()
         self.send_response(200)
         self.send_header("Content-type", "application/json")
         self.end_headers()
-        self.wfile.write(bytes(json.dumps(json_data), "utf-8"))
+        self.wfile.write(bytes("Hello, World wide web", "utf-8"))
 
 
 if __name__ == '__main__':

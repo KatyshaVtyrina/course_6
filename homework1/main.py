@@ -28,9 +28,10 @@ class MyServer(BaseHTTPRequestHandler):
         self.send_response(200)
         self.send_header("Content-type", "application/json")
         self.end_headers()
-        self.wfile.write(bytes('[]', "utf-8"))
+        self.wfile.write(bytes(f'{self.json_data}', "utf-8"))
 
     def do_GET(self):
+        print("Hello, World wide web")
         self.send_response(200)
         self.send_header("Content-type", "application/json")
         self.end_headers()

@@ -1,13 +1,21 @@
 from django.shortcuts import render
+from django.urls import reverse_lazy, reverse
+from django.views.generic import ListView, DetailView, CreateView, DeleteView
 from catalog.models import Product
 
 
-def display_home(request):
-    context = {
-        'object_list': Product.objects.all(),
-        'title': 'Каталог',
-    }
-    return render(request, 'catalog/display_home.html', context)
+class CatalogListView(ListView):
+    model = Product
+
+
+class CatalogDetailView(DetailView):
+    model = Product
+
+
+class CatalogCreateView(CreateView):
+    model = Product
+    fields = ('name', 'description', 'image', 'category', 'price')
+    success_url = reverse_lazy('catalog:catalog_list')
 
 
 def display_info(request):

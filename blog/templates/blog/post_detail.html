@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load mediapath_posts %}
+
 {% block content %}
     <div class="col">
         <div class="card">
@@ -15,7 +17,7 @@
                     </tr>
                     <tr>
                         <td>Изображение</td>
-                        <td>{{ object.image }}</td>
+                        <td><p><img src="{% mediapath object.image %}" width="150" height="120" alt="Картинка"></p></td>
                     </tr>
                     <tr>
                         <td>Дата публикации</td>

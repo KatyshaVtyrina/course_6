@@ -33,7 +33,7 @@ class PostUpdateView(UpdateView):
     model = Post
 
     fields = ('name', 'content', 'image', 'published')
-    success_url = reverse_lazy('blog:post_item')
+    success_url = reverse_lazy('blog:posts_list')
 
 
 class PostDeleteView(DeleteView):

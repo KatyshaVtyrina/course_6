@@ -6,7 +6,7 @@ NULLABLE = {'blank': True, 'null': True}
 
 class Post(models.Model):
     name = models.CharField(max_length=150, verbose_name='заголовок')
-    slug = models.CharField(max_length=150, verbose_name='URL')
+    slug = models.CharField(max_length=150, verbose_name='slug')
     content = models.TextField(verbose_name='содержимое')
     image = models.ImageField(upload_to='products/', verbose_name='изображение', **NULLABLE)
     created_at = models.DateTimeField(verbose_name='дата создания', auto_now_add=True)
@@ -19,7 +19,7 @@ class Post(models.Model):
     class Meta:
         verbose_name = 'Пост'
         verbose_name_plural = 'Посты'
-        ordering = ('created_at',)
+        ordering = ('-created_at',)
 
     def increase_view_count(self):
         """
@@ -27,5 +27,3 @@ class Post(models.Model):
         """
         self.view_count += 1
         self.save()
-
-

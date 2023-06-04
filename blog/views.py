@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy, reverse
+from django.utils.text import slugify
 
 from blog.models import Post
 
@@ -28,10 +29,14 @@ class PostCreateView(CreateView):
     fields = ('name', 'content', 'image', 'published')
     success_url = reverse_lazy('blog:posts_list')
 
+    # def post(self, request, *args, **kwargs):
+    #     title = request.POST.get('title')
+    #     slug = slugify(title)
+    #     return redirect(f'/blog/card/????/')
+
 
 class PostUpdateView(UpdateView):
     model = Post
-
     fields = ('name', 'content', 'image', 'published')
     success_url = reverse_lazy('blog:posts_list')
 

@@ -11,9 +11,17 @@
                             <li>{{object.description}}</li>
                         </ul>
                         <p><img src="{% mediapath object.image %}" width="150" height="120" alt="Картинка"></p>
+
+                        <ul class="list-unstyled mt-3 mb-4 text-start m-3">
+                            {% for version in versions %}
+                            <a href="{% url 'products:version' version.pk %}">
+                                Версия {{ version.title_version}} - {{ version.number_version}}</a><br>
+                            {% endfor %}
+                        </ul>
+
                         <p><a class="btn btn-secondary" href="{% url 'catalog:product_item' object.pk %}" role="button">Посмотреть &raquo;</a></p>
                         <p><a class="btn btn-warning" href="{% url 'catalog:catalog_update' object.pk %}" role="button">Изменить &raquo;</a></p>
-            <p><a class="btn btn-danger" href="{% url 'catalog:catalog_delete' object.pk %}" role="button">Удалить &raquo;</a></p>
+                        <p><a class="btn btn-danger" href="{% url 'catalog:catalog_delete' object.pk %}" role="button">Удалить &raquo;</a></p>
 
                     </div>
                 </div>

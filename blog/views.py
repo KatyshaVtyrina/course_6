@@ -29,10 +29,18 @@ class PostCreateView(CreateView):
     fields = ('name', 'content', 'image', 'published')
     success_url = reverse_lazy('blog:posts_list')
 
-    # def post(self, request, *args, **kwargs):
-    #     title = request.POST.get('title')
-    #     slug = slugify(title)
-    #     return redirect(f'/blog/card/????/')
+    def post(self, request, *args, **kwargs):
+        post_object = Post()
+        post_object.name = request.POST.get('name')
+        post_object.content = request.POST.get('content')
+        post_object.image = request.POST.get('image')
+        post_object.published = request.POST.get('published')
+        slug = slugify(request.POST.get('name'))
+        post_object.slug = slug
+
+        post_object.save()
+        print(request.POST.get('published'))
+        return redirect(f'/posts/{slug}/')
 
 
 class PostUpdateView(UpdateView):

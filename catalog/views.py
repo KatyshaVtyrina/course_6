@@ -15,10 +15,8 @@ class CatalogDetailView(DetailView):
     model = Product
 
     def get_context_data(self, **kwargs):
-        context_data = super().get_context_data()
-        context_data['name'] = self.get_object()
-        context_data['description'] = self.get_object()
-        context_data['versions'] = Version.objects.filter(product=self.object, is_active=True)
+        context_data = super().get_context_data(**kwargs)
+        context_data['name'] = self.object.name
         return context_data
 
 
@@ -60,10 +58,6 @@ class CatalogUpdateView(UpdateView):
 class CatalogDeleteView(DeleteView):
     model = Product
     success_url = reverse_lazy('catalog:catalog_list')
-
-
-class VersionListView(ListView):
-    model = Version
 
 
 def display_info(request):

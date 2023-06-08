@@ -7,7 +7,6 @@ app_name = BlogConfig.name
 
 urlpatterns = [
     path('blog/', PostListView.as_view(), name='posts_list'),
-    # path('posts/<int:pk>/', PostDetailView.as_view(), name='post_item'),
     path('posts/create/', PostCreateView.as_view(), name='post_create'),
     path('posts/<str:slug>/', PostDetailView.as_view(), name='post_item'),
     path('posts/update/<str:slug>/', PostUpdateView.as_view(), name='post_update'),

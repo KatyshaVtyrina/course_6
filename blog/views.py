@@ -38,8 +38,13 @@ class PostCreateView(CreateView):
         slug = slugify(request.POST.get('name'))
         post_object.slug = slug
 
+        if request.POST.get('published'):
+            post_object.published = True
+        else:
+            post_object.published = False
+
         post_object.save()
-        print(request.POST.get('published'))
+
         return redirect(f'/posts/{slug}/')
 
 

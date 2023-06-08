@@ -13,10 +13,14 @@
                         <p><img src="{% mediapath object.image %}" width="150" height="120" alt="Картинка"></p>
 
                         <ul class="list-unstyled mt-3 mb-4 text-start m-3">
-                            {% for version in versions %}
-                            <a href="{% url 'products:version' version.pk %}">
-                                Версия {{ version.title_version}} - {{ version.number_version}}</a><br>
+
+                            {% for version in object.version_set.all %}
+                                 {% if version.is_active %}
+
+                                    <div><strong>Активная версия: </strong> {{ version.number_version}} - {{ version.title_version}}</div>
+                                 {% endif %}
                             {% endfor %}
+
                         </ul>
 
                         <p><a class="btn btn-secondary" href="{% url 'catalog:product_item' object.pk %}" role="button">Посмотреть &raquo;</a></p>
